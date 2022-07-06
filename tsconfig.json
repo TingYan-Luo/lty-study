@@ -33,5 +33,6 @@
     "test",
     "docs",
     "tests"
-  ]
+  ],
+  "types": ["babylonjs", "babylonjs-loaders"]
 }
