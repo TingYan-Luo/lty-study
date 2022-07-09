@@ -9,6 +9,11 @@ export default [
     icon: 'ChromeOutlined',
     routes: [
       {
+        path: '/web/math',
+        component: '@/pages/web/math/index',
+        name: '算法',
+      },
+      {
         path: '/web/pie-chart-3',
         component: '@/pages/web/pie-chart-3/index',
         name: '3d饼图',
