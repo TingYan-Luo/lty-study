@@ -1,11 +1,14 @@
-import { MergeSort } from './sort';
+import { MergeSort, DutchFlag, FastSort } from './sort';
 
 export default function Index() {
-  const ARR = [2, 5, 15, 21, 56, 4, 331, 24, 51, 10, 12, 9, 8];
+  const ARR = [2, 5, 15, 21, 56, 4, 331, 24, 51, 10, 12, 9, 8, 3];
 
-  MergeSort(ARR);
+  // MergeSort(ARR);
   // PopSort(ARR);
   // SelectionSort(ARR);
+  // DutchFlag(ARR, 10);
+
+  console.log('FastSort->', FastSort(ARR, 0, ARR.length - 1));
 
   /** 深拷贝 */
   const DeepClone = (obj: any) => {

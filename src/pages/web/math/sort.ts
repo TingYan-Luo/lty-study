@@ -84,4 +84,66 @@ const MergeSort = (arr: number[]) => {
   proccess(0, arr.length);
 };
 
-export { PopSort, SelectionSort, MergeSort };
+/**
+ * 荷兰国旗问题
+ * < Num的值放在数组左边
+ * = Num的值放在数组中间边
+ * > Num的值放在数组右边
+ */
+const DutchFlag = (arr: number[], L: number, R: number) => {
+  let less = L - 1;
+  let more = R;
+
+  while (L < more) {
+    if (arr[L] < arr[R]) {
+      swipe(arr, ++less, L++);
+    } else if (arr[L] > arr[R]) {
+      swipe(arr, --more, L);
+    } else {
+      L++;
+    }
+  }
+  // for(let i = 0; i < arr.length; i++) {
+  //   if (i === R) {
+  //     break;
+  //   }
+
+  //   if (arr[i] < num) {
+  //     less++;
+  //     swipe(arr, i, less);
+  //   }
+
+  //   if (arr[i] > num) {
+  //     more--;
+  //     swipe(arr, i, more);
+  //     i--;
+  //   }
+  // }
+
+  // console.log('dutch-flag-changed>', num, arr);
+  return [less + 1, more];
+};
+
+/**
+ * 快排
+ * 在DutchFlag的基础上做左右递归
+ * 时间复杂度：最差情况O(N^2) num每次都为最边上的值； 最好情况O(NlogN) num正好为中间值
+ * 2.0：固定取数组最后一位数
+ * 3.0：在数组中随机取一位数，人为放置到数组最后。此时，最好情况和最差情况就是概率事件
+ */
+const FastSort = (arr: number[], L: number, R: number) => {
+  if (L < R) {
+    // 随机获取索引值
+    const num = Math.round(Math.random() * (R - L + 1));
+    // 将随机值交换到数组最后
+    swipe(arr, num, R);
+    const [newL, newR] = DutchFlag(arr, L, R);
+
+    FastSort(arr, L, newL - 1);
+    FastSort(arr, newR + 1, R);
+  }
+
+  return arr;
+};
+
+export { PopSort, SelectionSort, MergeSort, DutchFlag, FastSort };
