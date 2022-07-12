@@ -20,12 +20,12 @@ export default [
       },
     ],
   },
-  {
-    path: '/webGl',
-    component: '@/pages/webgl',
-    name: 'WebGL',
-    icon: 'coffee',
-  },
+  // {
+  //   path: '/webGl',
+  //   component: '@/pages/webgl',
+  //   name: 'WebGL',
+  //   icon: 'coffee',
+  // },
   {
     // path: '/babylon',
     // component: '@/pages/babylon',
@@ -43,21 +43,21 @@ export default [
         component: '@/pages/babylon/snake/index',
         name: '贪吃蛇',
       },
-      {
-        path: '/babylon/city',
-        component: '@/pages/babylon/city/index',
-        name: '城市',
-      },
-      {
-        path: '/babylon/preview',
-        component: '@/pages/babylon/preview/index',
-        name: '预览',
-      },
-      {
-        path: '/babylon/picture',
-        component: '@/pages/babylon/picture/index',
-        name: '画卷',
-      },
+      // {
+      //   path: '/babylon/city',
+      //   component: '@/pages/babylon/city/index',
+      //   name: '城市',
+      // },
+      // {
+      //   path: '/babylon/preview',
+      //   component: '@/pages/babylon/preview/index',
+      //   name: '预览',
+      // },
+      // {
+      //   path: '/babylon/picture',
+      //   component: '@/pages/babylon/picture/index',
+      //   name: '画卷',
+      // },
       {
         path: '/babylon/word-cloud',
         component: '@/pages/babylon/word-cloud/index',
@@ -68,30 +68,35 @@ export default [
         component: '@/pages/babylon/square/index',
         name: '广场',
       },
-    ],
-  },
-  {
-    name: 'Babylon+D3',
-    icon: 'BarcodeOutlined',
-    path: '/babylon-d3',
-    routes: [
       {
-        path: '/babylon-d3/demo',
-        component: '@/pages/babylon-d3/demo/index',
-        name: '小项目',
+        path: '/babylon/collection',
+        component: '@/pages/babylon/collection/index',
+        name: '藏品',
       },
     ],
   },
-  {
-    name: 'Three',
-    icon: 'HeatMapOutlined',
-    path: '/three',
-    routes: [
-      {
-        path: '/three/preview',
-        component: '@/pages/three/preview/index',
-        name: '预览',
-      },
-    ],
-  },
+  // {
+  //   name: 'Babylon+D3',
+  //   icon: 'BarcodeOutlined',
+  //   path: '/babylon-d3',
+  //   routes: [
+  //     {
+  //       path: '/babylon-d3/demo',
+  //       component: '@/pages/babylon-d3/demo/index',
+  //       name: '小项目',
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: 'Three',
+  //   icon: 'HeatMapOutlined',
+  //   path: '/three',
+  //   routes: [
+  //     {
+  //       path: '/three/preview',
+  //       component: '@/pages/three/preview/index',
+  //       name: '预览',
+  //     },
+  //   ],
+  // },
 ];

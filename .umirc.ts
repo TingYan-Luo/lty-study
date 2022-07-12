@@ -18,15 +18,4 @@ export default defineConfig({
     headerHeight: 0,
     defaultCollapsed: false,
   },
-  chainWebpack(config) {
-    config.module
-      .rule('gltf')
-      .test(/.gltf$/)
-      .use('url-loader')
-      .loader('url-loader')
-      .tap((option) => ({
-        ...option,
-        name: assetDir + '/gltg/[name].[hash:8].[ext]',
-      }));
-  },
 });
