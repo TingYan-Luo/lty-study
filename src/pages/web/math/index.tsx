@@ -37,6 +37,11 @@ export default function Index() {
     return result;
   };
 
+  for (let i = 0; i < 3; i++) {
+    const temp = 'hello';
+  }
+
+  console.log('temp', temp);
   // console.log('DeepClone', DeepClone({ id: 1 }));
 
   return (

@@ -36,3 +36,35 @@ const time2 = setTimeout(function () {
     console.log('12'); // promise3
   });
 });
+
+// --------------<< 防抖 >> ----------------- //
+function debounce(fun, wait, immediate) {
+  let timeout: any;
+
+  return () => {
+    let context = this;
+    let args = arguments;
+
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    if (immediate) {
+      let callNow = !timeout;
+
+      // 清空定时器
+      timeout = setTimeout(() => {
+        timeout = null;
+      }, wait);
+
+      if (callNow) {
+        // 立即执行，将fun的this重新指向
+        fun.apply(context, args);
+      } else {
+        timeout = setTimeout(() => {
+          fun.apply(context, args);
+        }, wait);
+      }
+    }
+  };
+}

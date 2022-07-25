@@ -23,6 +23,17 @@ const PopSort = (arr: number[]) => {
   }
 };
 
+/** 插入排序 */
+const InsertSort = (arr: number[]) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i; j > 0; j--) {
+      if (arr[j] > arr[j - 1]) {
+        swipe(arr, j, j - 1);
+      }
+    }
+  }
+};
+
 /** 交换数组项 */
 const swipe = (arr: number[], i: number, j: number) => {
   const temp = arr[i];
@@ -146,4 +157,93 @@ const FastSort = (arr: number[], L: number, R: number) => {
   return arr;
 };
 
-export { PopSort, SelectionSort, MergeSort, DutchFlag, FastSort };
+/**
+ * 大根堆：用户要插入一个值
+ * 在index位置插入一个值，保持大根堆结构
+ * 向上捋
+ * 时间复杂度:O(logN)
+ */
+const HeapInsert = (arr: number[], index: number) => {
+  while (arr[index] > arr[Math.round((index - 1) / 2)]) {
+    // 当前位置值大于父节点的值，则进行交换
+    swipe(arr, index, Math.round((index - 1) / 2));
+    index = Math.round((index - 1) / 2);
+  }
+};
+
+/**
+ * 大根堆：用户要删除最大值，并保持堆结构不变。首先删除0位置，再将最后一个位置的数字放到头部，将其向下捋
+ * 在index位置插入值，向下捋
+ * 时间复杂度:O(logN)
+ * @param arr 数组
+ * @param index 当前索引
+ * @param heapSize 堆的大小
+ */
+const Heapify = (arr: number[], index: number, heapSize: number) => {
+  // 获取index位置的左孩子索引
+  let left = index * 2 + 1;
+
+  // left索引不超出范围
+  while (left < heapSize) {
+    // 对比左右孩子的大小，获取最大值的索引
+    let large =
+      left + 1 < heapSize && arr[left] > arr[left + 1] ? left : left + 1;
+
+    // 对比孩子和父节点的大小，获取最大值的索引
+    large = arr[large] > arr[index] ? large : index;
+
+    if (large === index) {
+      break;
+    }
+
+    // 最大值和当前值进行交换
+    swipe(arr, large, index);
+    index = large;
+    left = index * 2 + 1;
+  }
+};
+
+/**
+ * 大根堆方式排序
+ * 通过大根堆插入的方式，将数组调整成一个大根堆 || 将数组视为大根堆，用heapify从最后一位开始捋
+ * 将数组大根堆的根节点与最后一位节点进行交换，将大根堆高度-1，即固定住最后一位不动。以新的根节点开始，进行向下捋
+ * 时间复杂度：O(N*logN)
+ * 空间复杂度：O(1)
+ * @param arr 数组
+ * @returns
+ */
+const HeapSort = (arr: number[]) => {
+  if (!arr || arr.length < 2) {
+    return arr;
+  }
+
+  // for(let i = 0; i < arr.length ; i++) { // O(N)
+  //   HeapInsert(arr, i);
+  // }
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    // O(N) 稍快一点
+    Heapify(arr, i, arr.length);
+  }
+  console.log('after HeapInsert ->>>', arr);
+
+  let heapSize = arr.length - 1; // 堆的高度
+  swipe(arr, 0, heapSize);
+  // 去除堆的最后一位
+  heapSize--;
+  while (heapSize > 0) {
+    Heapify(arr, 0, heapSize);
+    swipe(arr, 0, heapSize);
+    heapSize--;
+  }
+};
+
+export {
+  PopSort,
+  SelectionSort,
+  InsertSort,
+  MergeSort,
+  DutchFlag,
+  FastSort,
+  HeapSort,
+};
